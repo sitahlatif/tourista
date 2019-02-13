@@ -4,9 +4,21 @@
 {% block title %}Create{% endblock title %}
 
 {% block content %}
+<div class="detail-wrap">
+<div class="form-style-10 ">
+	<h1 class="text-center">Add New Destination<span> Here you can add new destionaton</span></h1>
 <form action="{% url 'destination-create' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  {{form.as_p}}
-  <input type="submit" value="Create">
+
+  {{form | crispy}}
+ 
+
+    <div class="button-section">
+       <input type="submit"  value="Create">
+     
+    </div>
 </form>
+</div>
+</div>
+
 {% endblock content %}

@@ -3,14 +3,53 @@
 {% block title %}List{% endblock title %}
 
 {% block content %}
+ <div class="main-banner">
+      <div class="container-fluid">
+        <div class="style-banner ">
+          <div class="row">
+            
+            <div class="col-lg-8 col-md-8 col-sm-9">
+              <div class="banner-right-txt ">
+              	<h1>Tourista</h1>
+                <h4>Fun and Adventure</h4>
+                <h4>With Joyful Trip</h4>
+                <div class="two-demo-button mt-lg-4 mt-md-3 mt-3">
+                  <p> Having Fun while you going through our website</p>
+                </div>
+                <div class="view-buttn mt-md-4 mt-sm-4 mt-3">
+                  <a href="{% url 'destination-create' %}"" class="btn">Add Destination</a>
+                </div>
+ 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
 <br>
-<div class="row">
+<div class="row" >
   {% for destination in destinations %}
   <a href="{% url 'destination-detail' destination.id %}">
-    <img src="{{destination.pretty_picture.url}}" />
-    <p>{{destination.name}}</p>
-    <p>{{destination.activities}}</p>
+  	<div class="card-container">
+    <div 
+      v-for="(card, index) in cards" 
+      :key="index" 
+      :ref="`card_${index}`"
+      @mouseover="hoverCard(index)"
+      @mouseout="hoverCard(-1)"
+      class="card text-center">
+  <img src="{{destination.pretty_picture.url}}" class="card-img-top {'selected': isSelected(index)}" alt="...">
+  <div class="card-body">
+    <h5 class="card-title text-uppercas">{{destination.name}}</h5>
+    <p class="card-text {'selected': isSelected(index)}">{{destination.activities}}</p>
+    
+  </div>
+</div>
+    
   </a>
+</div>
+
   {% endfor %}
 </div>
+
 {% endblock content %}
